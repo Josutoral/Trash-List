@@ -15,7 +15,7 @@ class _HomePageState extends State<HomePage> {
   List<Map<String, String>> wasteCollectionSchedule = [
     {'type': 'Carta e Cartone', 'date': '2023-12-03'},
     {'type': 'Rifiuto Secco Residuo', 'date': '2023-12-05'},
-    {'type': 'Plastica e metalli', 'date': '2023-12-07'},
+    {'type': 'Plastica e Metalli', 'date': '2023-12-07'},
   ];
 
   @override
@@ -29,7 +29,7 @@ class _HomePageState extends State<HomePage> {
       now = DateTime.now();
     });
   }
-
+  //https://icon-icons.com/icon/paper-boxes/69127
   @override
   void dispose() {
     timer?.cancel();
@@ -40,13 +40,10 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFFAC04B),
-      body: CustomPaint(
-        painter: PatternPainter(),
-        child: SafeArea(
+      body: SafeArea(
           bottom: false,
           child: _body(),
-        ),
-      ),
+        ),      
     );
   }
 
@@ -209,7 +206,7 @@ class _HomePageState extends State<HomePage> {
     return Expanded(
       child: Container(
         padding: const EdgeInsets.all(25),
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: Color(0xFFFEFCF8),
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(25),
@@ -222,15 +219,15 @@ class _HomePageState extends State<HomePage> {
           children: <Widget>[
             _filters(),
             Expanded(
-            child: ListView.separated(
+            child: ListView.builder(
               itemCount: wasteCollectionSchedule.length,
-              separatorBuilder: (context, index) => Divider(color: Colors.grey),
+              //separatorBuilder: (context, index) => Divider(color: Colors.grey),
               itemBuilder: (context, index) {
                 return _buildListItem(wasteCollectionSchedule[index]);
               },
             ),
           ),
-            _progress(),
+            //_progress(),
           ],
         ),
       ),
@@ -362,7 +359,7 @@ class _HomePageState extends State<HomePage> {
       iconData = Icons.delete_outline;
       iconColor = Colors.grey;
       break;
-    case 'Plastica e metalli':
+    case 'Plastica e Metalli':
       iconData = Icons.eco;
       iconColor = Colors.brown;
       break;
